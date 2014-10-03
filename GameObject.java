@@ -15,6 +15,7 @@ public class GameObject {
         this.id = id;
         this.parent = null;
         this.game.addGameObject(this);
+        init();
     }
 
     public GameObject(Game game, String id, GameObject parent) {
@@ -22,7 +23,10 @@ public class GameObject {
         this.id = id;
         this.parent = parent;
         this.game.addGameObject(this);
+        init();
     }
+
+    protected void init() {}
 
     protected void onUpdate(float deltaTime) {}
 

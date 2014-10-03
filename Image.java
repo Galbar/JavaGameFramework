@@ -9,6 +9,6 @@ import rocks.alessio.GameEngine.Renderer.ImageFormat;
 public interface Image {
     public int getWidth();
     public int getHeight();
-    public ImageFormat getFormat();
+    public String getFormat();
     public void dispose();
 }
