@@ -2,6 +2,9 @@ package rocks.alessio.GameEngine;
 
 import java.util.concurrent.ConcurrentSkipListMap;
 
+/**
+ * Created by alessio on 2/10/14.
+ */
 public class ScenePool extends ConcurrentSkipListMap<String, Scene> {
     public Scene put(Scene scene) {
         return super.put(scene.getId(), scene);
