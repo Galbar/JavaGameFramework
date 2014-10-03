@@ -30,7 +30,7 @@ public class GameObject {
 
     protected void onUpdate(float deltaTime) {}
 
-    protected void onDraw(Renderer renderer) {}
+    protected void onDraw() {}
 
     public void update(float deltaTime) {
         onUpdate(deltaTime);
@@ -39,10 +39,10 @@ public class GameObject {
         }
     }
 
-    public void draw(Renderer renderer) {
-        onDraw(renderer);
+    public void draw() {
+        onDraw();
         for (int i = 0; i < children.size(); i++) {
-            children.get(i).draw(renderer);
+            children.get(i).draw();
         }
     }
 

@@ -10,24 +10,26 @@ public class Game {
     private Scene currentScene;
     private Renderer renderer;
     //private Audio audio;
-    //private Input input;
+    private Input input;
 
     private boolean running = false;
 
-    public Game(String id, Scene initScene, Renderer renderer/*, Audio audio, Input input*/) {
+    public Game(String id, Scene initScene, Renderer renderer/*, Audio audio*/, Input input) {
         goPool = new GameObjectPool();
         scenePool = new ScenePool();
         currentScene = initScene;
         initSceneId = initScene.getId();
         this.renderer = renderer;
         //this.audio = audio;
-        //this.input = input;
+        this.input = input;
         init();
     }
 
     //public Audio getAudio() {}
 
-    //public Input getInput() {}
+    public Input getInput() {
+        return input;
+    }
 
     //public FileIO getFileIO(){}?????
 
@@ -47,8 +49,8 @@ public class Game {
         return scenePool.get(initSceneId);
     }
 
-    public void addGameObject(GameObject o) {
-        goPool.put(o);
+    public void addGameObject(GameObject obj) {
+        goPool.put(obj);
     }
 
     public void addScene(Scene scene) {
@@ -68,14 +70,14 @@ public class Game {
     }
 
     private void draw() {
-        currentScene.draw(renderer);
+        currentScene.draw();
     }
 
     public void init() {}
 
     public void onUpdate(float deltaTime) {}
 
-    public void onDraw(Renderer renderer){}
+    public void onDraw(){}
 
     public void run() {
         running = true;
@@ -86,8 +88,9 @@ public class Game {
 
             onUpdate(deltaTime);
             update(deltaTime);
-            onDraw(renderer);
+            onDraw();
             draw();
+            renderer.display();
         }
     }
 }

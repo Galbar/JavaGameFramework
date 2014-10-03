@@ -5,18 +5,16 @@ package rocks.alessio.GameEngine;
  */
 public interface Renderer {
 
-    public Image newImage(String fileName);
+    public void clearDisplay(Color color);
 
-    public void clearScreen(int color);
+    public void drawLine(int x, int y, int x2, int y2, Color color);
 
-    public void drawLine(int x, int y, int x2, int y2, int color);
-
-    public void drawRect(int x, int y, int width, int height, int color);
+    public void drawRect(int x, int y, int width, int height, Color color);
 
     public void drawImage(Image image, int x, int y, int srcX, int srcY,
                           int srcWidth, int srcHeight);
 
-    public void drawImage(Image Image, int x, int y);
+    public void drawImage(Image image, int x, int y);
 
     void drawText(String text, int x, int y);
 
@@ -26,4 +24,5 @@ public interface Renderer {
 
     public void drawARGB(int i, int j, int k, int l);
 
+    public void display();
 }
