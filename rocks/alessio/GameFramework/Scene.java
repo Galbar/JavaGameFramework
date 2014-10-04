@@ -1,4 +1,4 @@
-package rocks.alessio.GameEngine;
+package rocks.alessio.GameFramework;
 
 /**
  * Created by alessio on 2/10/14.
