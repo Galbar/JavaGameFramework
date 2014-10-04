@@ -5,7 +5,9 @@ package rocks.alessio.GameEngine;
  */
 public interface Renderer {
 
-    public void clearDisplay(Color color);
+    public void setClearColor(Color color);
+
+    public void clear();
 
     public void drawLine(int x, int y, int x2, int y2, Color color);
 
@@ -16,13 +18,11 @@ public interface Renderer {
 
     public void drawImage(Image image, int x, int y);
 
-    void drawText(String text, int x, int y);
+    void drawText(String text, int x, int y, Color color);
 
     public int getWidth();
 
     public int getHeight();
-
-    public void drawARGB(int i, int j, int k, int l);
 
     public void display();
 }

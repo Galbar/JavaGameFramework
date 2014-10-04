@@ -6,8 +6,8 @@ import java.util.ArrayList;
  */
 public class GameObject {
     private String id;
-    private final Game game;
-    private GameObject parent;
+    protected final Game game;
+    protected GameObject parent;
     private ArrayList<GameObject> children = new ArrayList<GameObject>();
 
     public GameObject(Game game, String id) {
@@ -15,28 +15,47 @@ public class GameObject {
         this.id = id;
         this.parent = null;
         this.game.addGameObject(this);
-        init();
     }
 
     public GameObject(Game game, String id, GameObject parent) {
         this.game = game;
         this.id = id;
-        this.parent = parent;
+        parent.addChild(this);
         this.game.addGameObject(this);
-        init();
     }
 
-    protected void init() {}
+    public void setParent(GameObject newParent) {
+        if (newParent.children.indexOf(this) == -1) {
+            if (parent != null)
+                parent.removeChild(this);
+            parent = newParent;
+            parent.children.add(this);
+        }
+    }
 
-    protected void onUpdate(float deltaTime) {}
+    public void addChild(GameObject newChild) {
+        newChild.setParent(this);
+    }
+
+    public void removeChild(GameObject child) {
+        children.remove(child);
+        child.parent = null;
+    }
+
+    protected void onUpdate() {}
+
+    protected void postUpdate() {}
 
     protected void onDraw() {}
 
-    public void update(float deltaTime) {
-        onUpdate(deltaTime);
+    protected void postDraw() {}
+
+    public void update() {
+        onUpdate();
         for (int i = 0; i < children.size(); i++) {
-            children.get(i).update(deltaTime);
+            children.get(i).update();
         }
+        postUpdate();
     }
 
     public void draw() {
@@ -44,6 +63,7 @@ public class GameObject {
         for (int i = 0; i < children.size(); i++) {
             children.get(i).draw();
         }
+        postDraw();
     }
 
     public String getId() {

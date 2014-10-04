@@ -9,7 +9,6 @@ public class GameObjectPool extends ConcurrentSkipListMap<String, GameObject> {
     public GameObject put(GameObject obj) {
         return super.put(obj.getId(), obj);
     }
-    // public GameObject put(String id, GameObject o) {}
     // public GameObject get(String id) {}
     // public GameObject remove(String id) {}
 }
