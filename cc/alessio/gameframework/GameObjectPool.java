@@ -1,4 +1,4 @@
-package rocks.alessio.GameFramework;
+package cc.alessio.gameframework;
 
 import java.util.concurrent.ConcurrentSkipListMap;
 

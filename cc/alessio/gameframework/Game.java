@@ -1,4 +1,4 @@
-package rocks.alessio.GameFramework;
+package cc.alessio.gameframework;
 
 /**
  * Created by alessio on 2/10/14.
@@ -12,6 +12,7 @@ public class Game {
 
     private boolean running = false;
     private float deltaTime = 0;
+    private boolean paused = false;
 
     public Game(Renderer renderer, Input input) {
         goPool = new GameObjectPool();
@@ -24,6 +25,26 @@ public class Game {
         this.running = running;
     }
 
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+        if (paused)
+            onPause();
+        else
+            onResume();
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public boolean isPaused() {
+        return  paused;
+    }
+
+    protected void onPause() {}
+
+    protected void onResume() {}
+
     public Input getInput() {
         return input;
     }
@@ -33,9 +54,12 @@ public class Game {
     }
 
     public void setScene(String id) {
-        currentScene.close();
+        setRunning(false);
+        if (currentScene != null)
+            currentScene.close();
         currentScene = scenePool.get(id);
         currentScene.start();
+        setRunning(true);
     }
 
     public Scene getCurrentScene() {
@@ -44,6 +68,10 @@ public class Game {
 
     public float getDeltaTime() {
         return deltaTime;
+    }
+
+    public void setDeltaTime(float dt) {
+        deltaTime = dt;
     }
 
     public void addGameObject(GameObject obj) {
@@ -58,18 +86,21 @@ public class Game {
         return goPool.get(id);
     }
 
+    public GameObject removeGameObject(GameObject obj) {
+        return goPool.remove(obj.getId());
+    }
+
     public Scene getScene(String id) {
         return scenePool.get(id);
     }
 
-    private void update() {
-        input.executeEvents();
+    public void update() {
         onUpdate();
         currentScene.update();
         postUpdate();
     }
 
-    private void draw() {
+    public void draw() {
         renderer.clear();
         onDraw();
         currentScene.draw();
@@ -91,7 +122,7 @@ public class Game {
         while(running) {
             deltaTime = (System.nanoTime() - startTime) / 10000000.000f;
             startTime = System.nanoTime();
-
+            input.executeEvents();
             update();
             draw();
         }

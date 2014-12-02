@@ -1,4 +1,4 @@
-package rocks.alessio.GameFramework;
+package cc.alessio.gameframework;
 
 /**
  * Created by alessio on 3/10/14.
@@ -13,12 +13,13 @@ public interface Renderer {
 
     public void drawRect(int x, int y, int width, int height, Color color);
 
-    public void drawImage(Image image, int x, int y, int srcX, int srcY,
-                          int srcWidth, int srcHeight);
+    public void drawImage(int image, int x, int y, float width, float height, float degrees);
 
-    public void drawImage(Image image, int x, int y);
+    public void drawImage(int image, int x, int y, float degrees);
 
-    void drawText(String text, int x, int y, Color color);
+    public void drawImage(int image, int x, int y, float scale, float degrees);
+
+    void drawText(String text, int x, int y, int size,  Color color);
 
     public int getWidth();
 

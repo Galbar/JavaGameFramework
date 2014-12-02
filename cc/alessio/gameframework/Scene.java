@@ -1,4 +1,4 @@
-package rocks.alessio.GameFramework;
+package cc.alessio.gameframework;
 
 /**
  * Created by alessio on 2/10/14.
@@ -9,8 +9,4 @@ public class Scene extends GameObject {
         super(game, id);
         game.addScene(this);
     }
-
-    public void close() {}
-
-    public void start() {}
 }
