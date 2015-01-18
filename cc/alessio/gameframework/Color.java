@@ -151,6 +151,13 @@ public class Color implements Comparable<Color>{
     private int b;
     private int a;
 
+    public Color(Color s) {
+        this.r = s.r;
+        this.g = s.g;
+        this.b = s.b;
+        this.a = s.a;
+    }
+
     public Color(int r, int g, int b) {
         this.r = r & 0xff;
         this.g = g & 0xff;
@@ -158,10 +165,10 @@ public class Color implements Comparable<Color>{
         this.a = 255;
     }
 
-    public Color(float r, float g, float b) {
-        this.r = (int)(r * 255.0f) & 0xff;
-        this.g = (int)(g * 255.0f) & 0xff;
-        this.b = (int)(b * 255.0f) & 0xff;
+    public Color(double r, double g, double b) {
+        this.r = (int)(r * 255.0) & 0xff;
+        this.g = (int)(g * 255.0) & 0xff;
+        this.b = (int)(b * 255.0) & 0xff;
         this.a = 255;
     }
 
@@ -172,11 +179,11 @@ public class Color implements Comparable<Color>{
         this.a = a & 0xff;
     }
     
-    public Color(float r, float g, float b, float a) {
-        this.r = (int)(r * 255.0f) & 0xff;
-        this.g = (int)(g * 255.0f) & 0xff;
-        this.b = (int)(b * 255.0f) & 0xff;
-        this.a = (int)(a * 255.0f) & 0xff;
+    public Color(double r, double g, double b, double a) {
+        this.r = (int)(r * 255.0) & 0xff;
+        this.g = (int)(g * 255.0) & 0xff;
+        this.b = (int)(b * 255.0) & 0xff;
+        this.a = (int)(a * 255.0) & 0xff;
     }
 
     public int getRi() {
@@ -195,20 +202,20 @@ public class Color implements Comparable<Color>{
         return a;
     }
 
-    public float getRf() {
-        return (float)r/255.0f;
+    public double getRf() {
+        return (double)r/255.0;
     }
 
-    public float getGf() {
-        return (float)g/255.0f;
+    public double getGf() {
+        return (double)g/255.0;
     }
 
-    public float getBf() {
-        return (float)b/255.0f;
+    public double getBf() {
+        return (double)b/255.0;
     }
 
-    public float getAf() {
-        return (float)a/255.0f;
+    public double getAf() {
+        return (double)a/255.0;
     }
 
     public Color setA(int a) {
@@ -216,8 +223,8 @@ public class Color implements Comparable<Color>{
         return this;
     }
 
-    public Color setA(float a) {
-        this.a = (int)(a * 255.0f) & 0xff;
+    public Color setA(double a) {
+        this.a = (int)(a * 255.0) & 0xff;
         return this;
     }
 

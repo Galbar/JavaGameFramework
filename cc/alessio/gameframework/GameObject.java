@@ -29,7 +29,7 @@ public class GameObject {
     public void setParent(GameObject newParent) {
         if (newParent.children.indexOf(this) == -1) {
             if (parent != null)
-                parent.removeChild(this);
+                parent.removeChild(this, false);
             parent = newParent;
             parent.children.add(this);
         }
@@ -40,15 +40,23 @@ public class GameObject {
     }
 
     public void removeChild(GameObject child) {
-        if (!child._isClosed)
+        removeChild(child, true);
+    }
+
+    public void removeChild(GameObject child, boolean close) {
+        if (!child._isClosed && close)
             child.close();
         children.remove(child);
         child.parent = null;
     }
 
     public void removeChild(int childId) {
+        removeChild(childId, true);
+    }
+
+    public void removeChild(int childId, boolean close) {
         GameObject child = children.get(childId);
-        if (!child._isClosed)
+        if (!child._isClosed && close)
             child.close();
         children.remove(child);
         child.parent = null;

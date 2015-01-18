@@ -9,9 +9,9 @@ public class Game {
     private Scene currentScene;
     private Renderer renderer;
     private Input input;
+    private Time time;
 
     private boolean running = false;
-    private float deltaTime = 0;
     private boolean paused = false;
 
     public Game(Renderer renderer, Input input) {
@@ -19,6 +19,7 @@ public class Game {
         scenePool = new ScenePool();
         this.renderer = renderer;
         this.input = input;
+        time = new Time();
     }
 
     public void setRunning(boolean running) {
@@ -53,6 +54,10 @@ public class Game {
         return renderer;
     }
 
+    public Time getTime() {
+        return time;
+    }
+
     public void setScene(String id) {
         setRunning(false);
         if (currentScene != null)
@@ -66,12 +71,8 @@ public class Game {
         return currentScene;
     }
 
-    public float getDeltaTime() {
-        return deltaTime;
-    }
-
-    public void setDeltaTime(float dt) {
-        deltaTime = dt;
+    public double getDeltaTime() {
+        return time.getDeltaTime();
     }
 
     public void addGameObject(GameObject obj) {
@@ -118,11 +119,11 @@ public class Game {
 
     public void run() {
         running = true;
-        long startTime = System.nanoTime();
+        time.init();
         while(running) {
-            deltaTime = (System.nanoTime() - startTime) / 10000000.000f;
-            startTime = System.nanoTime();
+            time.update();
             input.executeEvents();
+            time.executeEvents();
             update();
             draw();
         }

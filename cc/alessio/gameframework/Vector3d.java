@@ -42,7 +42,7 @@ public class Vector3d {
         init(x, y, z);
     }
 
-    public Vector3d(Vector3d u, Vector3d v) {
+    public Vector3d(Vector3d v, Vector3d u) {
         init(v.x - u.x, v.y - u.y, v.z - u.z);
     }
 
@@ -200,30 +200,6 @@ public class Vector3d {
     public Vector3d rotatedYZ(double degrees) {
         Vector3d r = new Vector3d(this);
         return r.rotateYZ(degrees);
-    }
-
-    public double getDegreeXY(Vector3d v) {
-        Vector3d dir = new Vector3d(this, v).normalized();
-        double deg = Math.toDegrees(Math.atan(dir.y / dir.x));
-        if (dir.x < 0.0)
-            deg += 180.0;
-        return deg;
-    }
-
-    public double getDegreeXZ(Vector3d v) {
-        Vector3d dir = new Vector3d(this, v).normalized();
-        double deg = Math.toDegrees(Math.atan(dir.z / dir.x));
-        if (dir.x < 0.0)
-            deg += 180.0;
-        return deg;
-    }
-
-    public double getDegreeYZ(Vector3d v) {
-        Vector3d dir = new Vector3d(this, v).normalized();
-        double deg = Math.toDegrees(Math.atan(dir.z / dir.y));
-        if (dir.y < 0.0)
-            deg += 180.0;
-        return deg;
     }
 
     public double dotProduct(Vector3d v) {

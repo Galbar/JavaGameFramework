@@ -13,11 +13,11 @@ public interface Renderer {
 
     public void drawRect(int x, int y, int width, int height, Color color);
 
-    public void drawImage(int image, int x, int y, float width, float height, float degrees);
+    public void drawImage(int image, int x, int y, double width, double height, double degrees);
 
-    public void drawImage(int image, int x, int y, float degrees);
+    public void drawImage(int image, int x, int y, double degrees);
 
-    public void drawImage(int image, int x, int y, float scale, float degrees);
+    public void drawImage(int image, int x, int y, double scale, double degrees);
 
     void drawText(String text, int x, int y, int size,  Color color);
 
